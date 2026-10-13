@@ -10,9 +10,9 @@ type ButtonProps = {
 
 const styles = {
   primary:
-    "border-accent bg-accent text-white shadow-[0_10px_30px_rgba(37,99,235,0.2)] hover:border-accent-bright hover:bg-accent-bright",
+    "border-accent bg-accent text-white shadow-[0_12px_32px_rgba(37,99,235,0.22)] hover:-translate-y-0.5 hover:border-accent-bright hover:bg-accent-bright",
   secondary:
-    "border-line-strong bg-surface/70 text-primary hover:border-accent/60 hover:bg-surface-raised",
+    "border-line-strong bg-white/[0.035] text-primary hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.065]",
   text: "border-transparent bg-transparent px-0 text-primary hover:text-accent-soft",
 };
 
@@ -25,7 +25,7 @@ export function Button({
   return (
     <Link
       href={href}
-      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-5 text-sm font-semibold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none ${styles[variant]} ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border px-5 text-sm font-semibold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none ${styles[variant]} ${className}`}
     >
       {children}
     </Link>
