@@ -33,7 +33,11 @@ export function ProjectCard({ project, variant = project.projectTier }: ProjectC
 
   if (variant === "historical") {
     return (
-      <article className="group flex min-h-52 flex-col rounded-2xl border border-line bg-surface/55 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-surface focus-within:border-accent/60 motion-reduce:transform-none motion-reduce:transition-none">
+      <Link
+        href={href}
+        aria-label={`View ${project.name} project`}
+        className="group flex min-h-52 flex-col rounded-2xl border border-line bg-surface/55 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-surface focus-visible:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none"
+      >
         <div className="flex items-start justify-between gap-4">
           <span className="rounded-md border border-line bg-white/[0.025] px-2 py-1 text-[0.62rem] font-semibold tracking-[0.12em] text-muted uppercase">
             Historical project
@@ -56,13 +60,10 @@ export function ProjectCard({ project, variant = project.projectTier }: ProjectC
           )}
         </div>
 
-        <Link
-          href={href}
-          className="mt-auto pt-7 text-xs font-semibold tracking-[0.12em] text-secondary uppercase transition hover:text-accent-soft focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
-        >
+        <span className="mt-auto pt-7 text-xs font-semibold tracking-[0.12em] text-secondary uppercase transition group-hover:text-accent-soft motion-reduce:transition-none">
           View project
-        </Link>
-      </article>
+        </span>
+      </Link>
     );
   }
 
@@ -70,7 +71,11 @@ export function ProjectCard({ project, variant = project.projectTier }: ProjectC
   const technologies = project.technologies.confirmed.slice(0, isFeatured ? 4 : 3);
 
   return (
-    <article className="project-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/75 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-surface hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] focus-within:border-accent/60 motion-reduce:transform-none motion-reduce:transition-none">
+    <Link
+      href={href}
+      aria-label={`View ${project.name} project`}
+      className="project-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/75 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-surface hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] focus-visible:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none"
+    >
       <div className="overflow-hidden border-b border-line bg-surface-muted">
         <div className="transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none">
           <ProjectVisual
@@ -128,13 +133,10 @@ export function ProjectCard({ project, variant = project.projectTier }: ProjectC
           </div>
         ) : null}
 
-        <Link
-          href={href}
-          className="mt-auto inline-flex items-center gap-2 pt-6 text-xs font-semibold tracking-[0.12em] text-secondary uppercase transition hover:text-accent-soft focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
-        >
+        <span className="mt-auto inline-flex items-center gap-2 pt-6 text-xs font-semibold tracking-[0.12em] text-secondary uppercase transition group-hover:text-accent-soft motion-reduce:transition-none">
           {isFeatured ? "View case study" : "View project"}
-        </Link>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }

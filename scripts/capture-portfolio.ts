@@ -1,3 +1,4 @@
+import { lookup } from "node:dns/promises";
 import { mkdir, rm, stat } from "node:fs/promises";
 import path from "node:path";
 
@@ -52,6 +53,12 @@ const captures: Capture[] = [
 ];
 
 const outputRoot = path.resolve(process.cwd(), "public", "projects");
+const fallbackImagePath = path.resolve(
+  process.cwd(),
+  "public",
+  "images",
+  "project-placeholders.jpg",
+);
 const navigationTimeout = 60_000;
 const networkIdleTimeout = 20_000;
 const renderDelay = 1_500;
@@ -181,10 +188,14 @@ async function dismissStuckLoaders(page: Page) {
 }
 
 async function waitForPage(page: Page, url: string) {
-  await page.goto(url, {
+  const response = await page.goto(url, {
     waitUntil: "domcontentloaded",
     timeout: navigationTimeout,
   });
+
+  if (response && !response.ok()) {
+    throw new Error(`website unavailable (HTTP ${response.status()})`);
+  }
 
   await page
     .waitForLoadState("networkidle", { timeout: networkIdleTimeout })
@@ -293,6 +304,7 @@ async function captureProject(browser: Browser, project: CaptureProject) {
   await mkdir(outputDirectory, { recursive: true });
 
   console.log(`\nCapturing ${project.name}...`);
+  await assertDomainAvailable(project.url);
 
   for (const capture of captures) {
     const context = await browser.newContext({
@@ -315,6 +327,49 @@ async function captureProject(browser: Browser, project: CaptureProject) {
     } finally {
       await context.close();
     }
+  }
+}
+
+async function assertDomainAvailable(url: string) {
+  const hostname = new URL(url).hostname;
+
+  try {
+    await lookup(hostname);
+  } catch (error) {
+    const code =
+      error instanceof Error && "code" in error
+        ? String(error.code)
+        : undefined;
+
+    if (code === "ENOTFOUND" || code === "EAI_AGAIN") {
+      throw new Error(`domain unavailable (${hostname})`);
+    }
+
+    throw error;
+  }
+}
+
+async function createFallbackImages(project: CaptureProject) {
+  const outputDirectory = path.join(outputRoot, project.slug);
+  await mkdir(outputDirectory, { recursive: true });
+
+  console.warn("  ! using local fallback image");
+
+  for (const capture of captures) {
+    const outputPath = path.join(outputDirectory, capture.filename);
+
+    await sharp(fallbackImagePath)
+      .resize({
+        width: capture.width,
+        height: capture.height,
+        fit: "cover",
+        position: "centre",
+      })
+      .webp({ quality: capture.quality, smartSubsample: true, effort: 5 })
+      .toFile(outputPath);
+
+    const file = await stat(outputPath);
+    console.log(`  ✓ ${capture.filename} fallback (${formatBytes(file.size)})`);
   }
 }
 
@@ -362,6 +417,7 @@ async function main() {
     );
   }
 
+  const fallbacks: Array<{ project: CaptureProject; reason: string }> = [];
   const failures: Array<{ project: CaptureProject; error: unknown }> = [];
   const browser = await launchBrowser();
 
@@ -370,8 +426,18 @@ async function main() {
       try {
         await captureProject(browser, project);
       } catch (error) {
-        failures.push({ project, error });
-        console.error(`  ✗ ${project.name}: ${errorMessage(error)}`);
+        const reason = captureFailureReason(error, project.url);
+        console.warn(`  ! ${project.name}: ${reason}; using fallback`);
+
+        try {
+          await createFallbackImages(project);
+          fallbacks.push({ project, reason });
+        } catch (fallbackError) {
+          failures.push({ project, error: fallbackError });
+          console.error(
+            `  ✗ fallback generation failed: ${errorMessage(fallbackError)}`,
+          );
+        }
       }
     }
   } finally {
@@ -379,8 +445,15 @@ async function main() {
   }
 
   console.log("\nCapture summary");
-  console.log(`  Successful: ${selectedProjects.length - failures.length}`);
+  console.log(
+    `  Successful: ${selectedProjects.length - fallbacks.length - failures.length}`,
+  );
+  console.log(`  Fallback: ${fallbacks.length}`);
   console.log(`  Failed: ${failures.length}`);
+
+  for (const { project, reason } of fallbacks) {
+    console.warn(`  - ${project.name}: fallback used (${reason})`);
+  }
 
   if (failures.length > 0) {
     for (const { project, error } of failures) {
@@ -391,7 +464,23 @@ async function main() {
 }
 
 function errorMessage(error: unknown) {
-  return error instanceof Error ? error.message : String(error);
+  const message = error instanceof Error ? error.message : String(error);
+  return message.split(/\r?\n/, 1)[0];
+}
+
+function captureFailureReason(error: unknown, url: string) {
+  const message = errorMessage(error);
+  const hostname = new URL(url).hostname;
+
+  if (/ERR_NAME_NOT_RESOLVED|ENOTFOUND|EAI_AGAIN/i.test(message)) {
+    return `domain unavailable (${hostname})`;
+  }
+
+  if (/ERR_CONNECTION_REFUSED|ERR_CONNECTION_TIMED_OUT/i.test(message)) {
+    return `website unavailable (${hostname})`;
+  }
+
+  return message;
 }
 
 main().catch((error) => {
