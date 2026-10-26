@@ -414,7 +414,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/calikites/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/calikites/cover.webp"
     },
     "seo": {
       "title": "CaliKites | Web Development Project | Udaya Krishantha",
@@ -468,7 +468,7 @@ export const projects: Project[] = [
       "Platform details are also supported by project history."
     ],
     "images": {
-      "cover": "/projects/enjoy-the-maui-life/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/enjoy-the-maui-life/cover.webp"
     },
     "seo": {
       "title": "Enjoy the Maui Life | Web Development Project | Udaya Krishantha",
@@ -512,7 +512,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/highbury-homes/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/highbury-homes/cover.webp"
     },
     "seo": {
       "title": "Highbury Homes | Web Development Project | Udaya Krishantha",
@@ -551,7 +551,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/exway/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/exway/cover.webp"
     },
     "seo": {
       "title": "Exway | Web Development Project | Udaya Krishantha",
@@ -591,7 +591,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/last-mile-sf/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/last-mile-sf/cover.webp"
     },
     "seo": {
       "title": "Last Mile SF | Web Development Project | Udaya Krishantha",
@@ -642,7 +642,7 @@ export const projects: Project[] = [
       "The site includes extensive product specification and warranty information."
     ],
     "images": {
-      "cover": "/projects/goliath-outdoor/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/goliath-outdoor/cover.webp"
     },
     "seo": {
       "title": "Goliath Outdoor | Web Development Project | Udaya Krishantha",
@@ -683,7 +683,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/hearsee-mobility/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/hearsee-mobility/cover.webp"
     },
     "seo": {
       "title": "Hearsee Mobility | Web Development Project | Udaya Krishantha",
@@ -723,7 +723,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/champ360-marketing/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/champ360-marketing/cover.webp"
     },
     "seo": {
       "title": "Champ360 Marketing | Web Development Project | Udaya Krishantha",
@@ -760,7 +760,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/crave-home-staging/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/crave-home-staging/cover.webp"
     },
     "seo": {
       "title": "Crave Home Staging | Web Development Project | Udaya Krishantha",
@@ -801,7 +801,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/castaway-hawaii/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/castaway-hawaii/cover.webp"
     },
     "seo": {
       "title": "Castaway Hawaii | Web Development Project | Udaya Krishantha",
@@ -841,7 +841,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/jawzrsize/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/jawzrsize/cover.webp"
     },
     "seo": {
       "title": "JAWZRSIZE | Web Development Project | Udaya Krishantha",
@@ -881,7 +881,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/north-shore-kiteboarding/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/north-shore-kiteboarding/cover.webp"
     },
     "seo": {
       "title": "North Shore Kiteboarding | Web Development Project | Udaya Krishantha",
@@ -921,7 +921,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/hes-hawaii/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/hes-hawaii/cover.webp"
     },
     "seo": {
       "title": "HES Hawaii | Web Development Project | Udaya Krishantha",
@@ -961,7 +961,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/brigit-and-bernards/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/brigit-and-bernards/cover.webp"
     },
     "seo": {
       "title": "Brigit & Bernard’s | Web Development Project | Udaya Krishantha",
@@ -999,7 +999,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/evonuk-farms/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/evonuk-farms/cover.webp"
     },
     "seo": {
       "title": "Evonuk Farms | Web Development Project | Udaya Krishantha",
@@ -1046,7 +1046,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/average-beach/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/average-beach/cover.webp"
     },
     "seo": {
       "title": "Average Beach | Web Development Project | Udaya Krishantha",
@@ -1089,7 +1089,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/oli-oli-pizza/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/oli-oli-pizza/cover.webp"
     },
     "seo": {
       "title": "Oli Oli Pizza | Web Development Project | Udaya Krishantha",
@@ -1129,7 +1129,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/icdw-hawaii/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/icdw-hawaii/cover.webp"
     },
     "seo": {
       "title": "ICDW Hawaii | Web Development Project | Udaya Krishantha",
@@ -1174,7 +1174,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/barbara-liniger/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/barbara-liniger/cover.webp"
     },
     "seo": {
       "title": "Barbara Liniger | Web Development Project | Udaya Krishantha",
@@ -1213,7 +1213,7 @@ export const projects: Project[] = [
     "status": "live",
     "verification": "needs-review",
     "images": {
-      "cover": "/projects/champa/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/champa/cover.webp"
     },
     "seo": {
       "title": "Champa | Web Development Project | Udaya Krishantha",
@@ -1260,7 +1260,7 @@ export const projects: Project[] = [
       "Developer confirms full website creation and current working domain. Independent HTTP verification is inconclusive."
     ],
     "images": {
-      "cover": "/projects/connors-security/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/connors-security/cover.webp"
     },
     "seo": {
       "title": "Connors Security | Web Development Project | Udaya Krishantha",
@@ -1304,7 +1304,7 @@ export const projects: Project[] = [
       "Developer confirms full website creation and current working domain. Independent HTTP verification is inconclusive."
     ],
     "images": {
-      "cover": "/projects/apollo-re-investors/cover.webp"
+      "cover": "/api/portfolio-access/assets/projects/apollo-re-investors/cover.webp"
     },
     "seo": {
       "title": "Apollo RE Investors | Web Development Project | Udaya Krishantha",

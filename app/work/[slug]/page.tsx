@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { ProjectVisual } from "@/components/project-visual";
 import { TechBadge } from "@/components/tech-badge";
-import { getProjectBySlug, projects } from "@/data/projects";
+import { getProjectBySlug, homepageProjects } from "@/data/projects";
 
 const contributionLabels = {
   built: "Built",
@@ -16,7 +16,7 @@ const contributionLabels = {
 } as const;
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return homepageProjects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -27,7 +27,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project) return {};
+  if (!project?.homepageFeatured) return { robots: { index: false, follow: false } };
 
   return {
     title: project.seo.title,
@@ -43,7 +43,7 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project) notFound();
+  if (!project?.homepageFeatured) notFound();
 
   const contribution = contributionLabels[project.contribution];
   const primaryImage = project.images.desktop ?? project.images.cover;
