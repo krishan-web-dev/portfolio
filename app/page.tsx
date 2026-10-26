@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 import { Button } from "@/components/button";
 import { Container } from "@/components/container";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectVisual } from "@/components/project-visual";
 import { SectionHeading } from "@/components/section-heading";
 import { TechBadge } from "@/components/tech-badge";
-import { projects } from "@/data/projects";
+import { getHomepageProjects, projects } from "@/data/projects";
 
 const technologies = [
   "Next.js",
@@ -20,7 +22,7 @@ const technologies = [
 
 const stats = [
   { value: "10+", label: "Years of experience" },
-  { value: "40+", label: "Web projects" },
+  { value: String(projects.length), label: "Web projects" },
   { value: "NZ", label: "Based in New Zealand" },
   { value: "Open", label: "To opportunities" },
 ];
@@ -93,8 +95,22 @@ function DownloadIcon() {
   );
 }
 
+function LinkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-6" fill="none" aria-hidden="true">
+      <path
+        d="m9.5 14.5 5-5m-6.8 8.3-1.5 1.5a3.54 3.54 0 0 1-5-5l3-3a3.54 3.54 0 0 1 5 0m7.1-5.1 1.5-1.5a3.54 3.54 0 0 1 5 5l-3 3a3.54 3.54 0 0 1-5 0"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Home() {
-  const featuredProjects = projects.filter((project) => project.featured).slice(0, 6);
+  const featuredProjects = getHomepageProjects();
   const matrixProject = projects[0];
 
   return (
@@ -148,22 +164,59 @@ export default function Home() {
                     Featured project
                   </span>
                 </div>
-                <ProjectVisual
-                  image={matrixProject.images.cover}
-                  alt="Matrix website preview"
-                  priority
-                  ratio="hero"
-                />
-                <div className="flex flex-col gap-4 border-t border-line p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-                  <div>
-                    <p className="text-lg font-semibold tracking-[-0.02em] text-primary">Matrix (Pvt) Ltd</p>
-                    <p className="mt-1 text-sm text-secondary">Headless catalogue platform</p>
+                <div className="group relative isolate">
+                  <ProjectVisual
+                    image={matrixProject.images.cover}
+                    alt={`${matrixProject.name} website preview`}
+                    priority
+                    ratio="banner"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_38%,rgba(7,17,31,0.18)_62%,rgba(7,17,31,0.86)_100%)] transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0 motion-reduce:transition-none"
+                    aria-hidden="true"
+                  />
+
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-5 transition duration-300 group-hover:translate-y-2 group-hover:opacity-0 group-focus-within:translate-y-2 group-focus-within:opacity-0 sm:p-6 motion-reduce:transform-none motion-reduce:transition-none">
+                    <div className="flex w-fit flex-wrap items-center gap-2">
+                      <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-background/20 px-2.5 py-1 text-[0.62rem] font-semibold tracking-[0.13em] text-white uppercase backdrop-blur-sm">
+                        <span className="size-1.5 rounded-full bg-accent-soft" />
+                        Featured project
+                      </span>
+                      {matrixProject.industry[0] ? (
+                        <span className="w-fit text-[0.65rem] font-semibold tracking-[0.12em] text-white/80 uppercase [text-shadow:0_1px_12px_rgba(0,0,0,0.9)]">
+                          {matrixProject.industry[0]}
+                        </span>
+                      ) : null}
+                    </div>
+
+                    <h2 className="mt-2.5 w-fit max-w-[18rem] rounded-lg border border-white/15 bg-background/45 px-3 py-2 text-base font-semibold tracking-[-0.025em] text-white shadow-[0_12px_35px_rgba(0,0,0,0.3)] backdrop-blur-md sm:max-w-lg sm:text-lg">
+                      {matrixProject.name}
+                    </h2>
+
+                    <div className="mt-3 flex w-fit flex-wrap gap-2" aria-label="Project technologies">
+                      {matrixProject.technologies.confirmed.slice(0, 3).map((item) => (
+                        <TechBadge key={item}>{item}</TechBadge>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["Next.js", "WordPress", "GraphQL"].map((item) => (
-                      <TechBadge key={item}>{item}</TechBadge>
-                    ))}
-                  </div>
+
+                  <Link
+                    href={`/work/${matrixProject.slug}`}
+                    aria-label={`View ${matrixProject.name} case study`}
+                    className="absolute inset-0 z-20 grid place-items-center bg-background/75 opacity-0 backdrop-blur-[2px] transition duration-300 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-accent motion-reduce:transition-none"
+                  >
+                    <span className="flex flex-col items-center gap-3 text-white">
+                      <span className="grid size-14 place-items-center rounded-full border border-white/25 bg-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.35)] transition duration-300 group-hover:scale-105 group-hover:border-accent-soft group-hover:bg-accent motion-reduce:transform-none motion-reduce:transition-none">
+                        <LinkIcon />
+                      </span>
+                      <span className="text-xs font-semibold tracking-[0.14em] uppercase">
+                        View case study
+                      </span>
+                    </span>
+                    <span className="absolute inset-x-0 bottom-0 mx-auto max-w-xl px-6 pb-6 text-center text-sm leading-6 text-white/80 sm:pb-8">
+                      {matrixProject.summary}
+                    </span>
+                  </Link>
                 </div>
               </div>
               <div className="absolute -right-3 -bottom-4 hidden items-center gap-2 rounded-lg border border-line-strong bg-surface-raised px-3 py-2.5 text-xs text-secondary shadow-2xl sm:flex">
@@ -207,7 +260,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Selected work"
               title="Projects built for real-world use."
-              description="A selection of notable work from more than 40 websites and applications."
+              description={`Six selected projects from ${projects.length} websites and web projects delivered across more than 10 years.`}
             />
             <Button href="/work" variant="text" className="self-start sm:self-auto">
               View all projects <ArrowIcon />

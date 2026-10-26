@@ -5,12 +5,12 @@ import { useEffect, useId, useState } from "react";
 import { Container } from "@/components/container";
 
 const navigation = [
-  { label: "Home", href: "#top" },
-  { label: "Work", href: "#work" },
-  { label: "Experience", href: "#experience" },
-  { label: "About", href: "#about" },
+  { label: "Home", href: "/" },
+  { label: "Work", href: "/work" },
+  { label: "Experience", href: "/#experience" },
+  { label: "About", href: "/#about" },
   { label: "CV", href: "/cv" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Navbar() {
@@ -43,7 +43,7 @@ export function Navbar() {
     >
       <Container className="flex h-16 items-center justify-between gap-6">
         <Link
-          href="#top"
+          href="/"
           className="group flex min-w-0 items-center gap-3 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           onClick={() => setIsOpen(false)}
         >
@@ -71,7 +71,7 @@ export function Navbar() {
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/#contact"
             className="ml-2 rounded-lg border border-accent/50 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent-soft transition hover:border-accent hover:bg-accent hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none"
           >
             Let&apos;s talk

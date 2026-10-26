@@ -1,3 +1,8 @@
+export type ProjectTier =
+    | "featured"
+    | "standard"
+    | "historical";
+
 export type ProjectContribution =
     | "built"
     | "revamped"
@@ -12,7 +17,7 @@ export type ProjectStatus =
     | "changed"
     | "unknown";
 
-export type VerificationLevel =
+export type ProjectVerification =
     | "confirmed"
     | "partially-confirmed"
     | "needs-review";
@@ -21,12 +26,10 @@ export type Project = {
     slug: string;
     name: string;
     client?: string;
-
     url?: string;
 
     industry: string[];
     projectTypes: string[];
-
     platforms: string[];
 
     technologies: {
@@ -37,16 +40,26 @@ export type Project = {
     role?: string;
     contribution: ProjectContribution;
 
+    projectTier: ProjectTier;
+
+    /**
+     * Important for older projects.
+     * false = current live website may no longer represent
+     * the version I originally worked on.
+     */
+    currentSiteRepresentsMyWork?: boolean;
+
     summary: string;
     description?: string;
 
     responsibilities?: string[];
 
     featured: boolean;
+
     status: ProjectStatus;
 
-    verification: VerificationLevel;
-
+    /** Internal publishing metadata. Never render this in public project UI. */
+    verification?: ProjectVerification;
     verificationNotes?: string[];
 
     images: {

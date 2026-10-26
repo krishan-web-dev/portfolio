@@ -4,13 +4,14 @@ type ProjectVisualProps = {
   image: string;
   alt: string;
   priority?: boolean;
-  ratio?: "square" | "landscape" | "hero";
+  ratio?: "square" | "landscape" | "hero" | "banner";
 };
 
 const ratios = {
   square: "aspect-square",
   landscape: "aspect-[16/10]",
   hero: "aspect-[4/3]",
+  banner: "aspect-[4/5] sm:aspect-[4/3]",
 };
 
 export function ProjectVisual({
