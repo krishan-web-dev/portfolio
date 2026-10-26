@@ -95,20 +95,6 @@ function DownloadIcon() {
   );
 }
 
-function LinkIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="size-6" fill="none" aria-hidden="true">
-      <path
-        d="m9.5 14.5 5-5m-6.8 8.3-1.5 1.5a3.54 3.54 0 0 1-5-5l3-3a3.54 3.54 0 0 1 5 0m7.1-5.1 1.5-1.5a3.54 3.54 0 0 1 5 5l-3 3a3.54 3.54 0 0 1-5 0"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export default function Home() {
   const featuredProjects = getHomepageProjects();
   const matrixProject = projects[0];
@@ -154,13 +140,13 @@ export default function Home() {
             <div className="relative mx-auto w-full max-w-[39rem] lg:justify-self-end">
               <div className="absolute -inset-10 bg-accent/[0.08] blur-[90px]" aria-hidden="true" />
               <div className="relative overflow-hidden rounded-2xl border border-line-strong bg-[#0a1422] shadow-[0_40px_100px_rgba(0,0,0,0.4)]">
-                <div className="flex h-11 items-center justify-between border-b border-line px-4">
+                <div className="flex h-11 items-center justify-between border-b border-slate-200 bg-white px-4">
                   <div className="flex gap-1.5" aria-hidden="true">
-                    <span className="size-2 rounded-full bg-white/15" />
-                    <span className="size-2 rounded-full bg-white/10" />
-                    <span className="size-2 rounded-full bg-white/10" />
+                    <span className="size-2 rounded-full bg-slate-400" />
+                    <span className="size-2 rounded-full bg-slate-300" />
+                    <span className="size-2 rounded-full bg-slate-300" />
                   </div>
-                  <span className="text-[0.62rem] font-medium tracking-[0.16em] text-muted uppercase">
+                  <span className="text-[0.62rem] font-semibold tracking-[0.16em] text-slate-600 uppercase">
                     Featured project
                   </span>
                 </div>
@@ -205,12 +191,12 @@ export default function Home() {
                     aria-label={`View ${matrixProject.name} case study`}
                     className="absolute inset-0 z-20 grid place-items-center bg-background/75 opacity-0 backdrop-blur-[2px] transition duration-300 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-accent motion-reduce:transition-none"
                   >
-                    <span className="flex flex-col items-center gap-3 text-white">
-                      <span className="grid size-14 place-items-center rounded-full border border-white/25 bg-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.35)] transition duration-300 group-hover:scale-105 group-hover:border-accent-soft group-hover:bg-accent motion-reduce:transform-none motion-reduce:transition-none">
-                        <LinkIcon />
-                      </span>
-                      <span className="text-xs font-semibold tracking-[0.14em] uppercase">
+                    <span className="inline-flex items-center gap-3 text-white">
+                      <span className="text-xs font-semibold tracking-[0.12em] uppercase">
                         View case study
+                      </span>
+                      <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-white/20 bg-white/[0.06] text-white transition group-hover:border-accent/40 group-hover:bg-accent motion-reduce:transition-none">
+                        <ArrowIcon diagonal />
                       </span>
                     </span>
                     <span className="absolute inset-x-0 bottom-0 mx-auto max-w-xl px-6 pb-6 text-center text-sm leading-6 text-white/80 sm:pb-8">
@@ -218,10 +204,6 @@ export default function Home() {
                     </span>
                   </Link>
                 </div>
-              </div>
-              <div className="absolute -right-3 -bottom-4 hidden items-center gap-2 rounded-lg border border-line-strong bg-surface-raised px-3 py-2.5 text-xs text-secondary shadow-2xl sm:flex">
-                <span className="size-1.5 rounded-full bg-emerald-400" />
-                Production focused
               </div>
             </div>
           </div>
