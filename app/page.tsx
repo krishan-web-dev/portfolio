@@ -103,7 +103,7 @@ export default function Home() {
     <>
       <section id="top" className="relative scroll-mt-20 overflow-hidden border-b border-line">
         <div className="hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
-        <Container className="relative pt-20 pb-12 sm:pt-24 lg:pt-28 lg:pb-16">
+        <Container className="relative pt-20 pb-12 sm:pt-24 lg:pt-[clamp(1rem,2.5vh,2rem)] lg:pb-16">
           <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:gap-20">
             <div>
               <div className="inline-flex items-center gap-2.5 rounded-lg border border-line bg-white/[0.03] px-3 py-2 text-[0.7rem] font-semibold tracking-[0.12em] text-secondary uppercase">
