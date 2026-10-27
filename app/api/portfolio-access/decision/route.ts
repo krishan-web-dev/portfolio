@@ -20,7 +20,10 @@ export async function POST(request: Request) {
   if (!isSameOrigin(request)) return resultRedirect(request, "invalid");
   const form = await request.formData();
   const parsed = schema.safeParse(Object.fromEntries(form));
-  if (!parsed.success || !verifyOwnerPassphrase(parsed.data.passphrase)) return resultRedirect(request, "invalid");
+  if (!parsed.success) return resultRedirect(request, "invalid");
+  if (!verifyOwnerPassphrase(parsed.data.passphrase)) {
+    return resultRedirect(request, "invalid-passphrase");
+  }
 
   try {
     const decision = await decideAccessRequest(parsed.data);

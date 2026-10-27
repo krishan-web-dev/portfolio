@@ -13,6 +13,7 @@ function Notice({ state }: { state: string }) {
     approved: { title: "Access approved", body: "The visitor has been sent a secure one-time access link." },
     rejected: { title: "Request rejected", body: "The request was rejected. No access link was created." },
     "already-processed": { title: "Already reviewed", body: "This authorisation link has already been used and no further action was taken." },
+    "invalid-passphrase": { title: "Passphrase not accepted", body: "No action was taken. Open the newest approval email and try again with the owner passphrase configured for the production deployment." },
     invalid: { title: "Link unavailable", body: "This authorisation link is invalid or has expired. No action was taken." },
     "delivery-failed": { title: "Approved, but email delivery failed", body: "The approval was recorded, but the visitor email could not be delivered. Check the server SMTP diagnostic before taking further action." },
   };
