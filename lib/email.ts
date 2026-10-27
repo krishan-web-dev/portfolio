@@ -27,6 +27,7 @@ function escapeHtml(value: string) {
 
 export async function sendOwnerRequestEmail(input: RequestEmail) {
   const { owner, siteUrl } = getEmailConfig();
+  const issuedAt = input.requestedAt.toISOString();
   const base = `${siteUrl}/work/access-decision`;
   const common = `request=${encodeURIComponent(input.requestId)}&token=${encodeURIComponent(input.approvalToken)}`;
   const approveUrl = `${base}?${common}&decision=approve`;
@@ -36,9 +37,9 @@ export async function sendOwnerRequestEmail(input: RequestEmail) {
 
   await sendEmail({
     to: owner,
-    subject: `New Portfolio Access Request — ${input.fullName}`,
-    html: `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;color:#0f172a"><h1 style="font-size:24px">New portfolio access request</h1><table style="border-collapse:collapse;width:100%">${row("Name", input.fullName)}${row("Email", input.email)}${row("Company", input.company)}${row("Message", input.reason)}${row("Requested", input.requestedAt.toISOString())}</table><p style="margin:28px 0 12px"><a href="${approveUrl}" style="display:inline-block;background:#2563eb;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700">Approve Access</a> <a href="${rejectUrl}" style="display:inline-block;border:1px solid #cbd5e1;color:#334155;padding:11px 18px;border-radius:8px;text-decoration:none;font-weight:700">Reject Request</a></p><p style="color:#64748b;font-size:13px;line-height:1.5">Each link opens a confirmation page. No decision is made until you enter your private passphrase and submit the form.</p></div>`,
-    text: `New portfolio access request\n\nName: ${input.fullName}\nEmail: ${input.email}\nCompany: ${input.company || "—"}\nMessage: ${input.reason || "—"}\nRequested: ${input.requestedAt.toISOString()}\n\nApprove: ${approveUrl}\nReject: ${rejectUrl}\n\nOpening a link does not make a decision.`,
+    subject: `Portfolio access request — ${input.fullName} — ${issuedAt}`,
+    html: `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;color:#0f172a"><h1 style="font-size:24px">New portfolio access request</h1><table style="border-collapse:collapse;width:100%">${row("Name", input.fullName)}${row("Email", input.email)}${row("Company", input.company)}${row("Message", input.reason)}${row("Requested", issuedAt)}</table><p style="margin:28px 0 12px"><a href="${approveUrl}" style="display:inline-block;background:#2563eb;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700">Approve Access</a> <a href="${rejectUrl}" style="display:inline-block;border:1px solid #cbd5e1;color:#334155;padding:11px 18px;border-radius:8px;text-decoration:none;font-weight:700">Reject Request</a></p><p style="color:#64748b;font-size:13px;line-height:1.5">Each link opens a confirmation page. No decision is made until you enter your private passphrase and submit the form. If you received more than one notification for this request, only the message with the latest Requested timestamp is valid.</p></div>`,
+    text: `New portfolio access request\n\nName: ${input.fullName}\nEmail: ${input.email}\nCompany: ${input.company || "—"}\nMessage: ${input.reason || "—"}\nRequested: ${issuedAt}\n\nApprove: ${approveUrl}\nReject: ${rejectUrl}\n\nOpening a link does not make a decision. If you received more than one notification for this request, only the message with the latest Requested timestamp is valid.`,
   });
 }
 
