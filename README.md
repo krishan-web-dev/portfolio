@@ -9,7 +9,7 @@ pnpm install
 pnpm dev
 ```
 
-Copy `.env.example` to `.env.local` and configure the values described below. Never expose the Supabase secret key, Turnstile secret, owner passphrase, token pepper, or Resend key through a `NEXT_PUBLIC_` variable.
+Copy `.env.example` to `.env.local` and configure the values described below. Never expose the Supabase secret key, Turnstile secret, owner passphrase, token pepper, or Brevo SMTP key through a `NEXT_PUBLIC_` variable.
 
 ## Private portfolio setup
 
@@ -33,11 +33,25 @@ The migration enables RLS, removes access for `anon` and `authenticated`, and ex
 
 Turnstile is verified server-side before a request is recorded. Database-backed per-IP limiting allows five submissions per 15-minute window, and pending duplicate email submissions within 24 hours return the same public success response without sending another notification.
 
-### 3. Resend
+### 3. Brevo SMTP
 
-1. Verify a sending domain in Resend for production.
-2. Set `RESEND_API_KEY`, `PORTFOLIO_OWNER_EMAIL`, and `PORTFOLIO_FROM_EMAIL`.
-3. The from address must belong to the verified domain.
+1. In Brevo, create and verify `krishanthananayakkara@gmail.com` as a sender. Brevo may rewrite the visible sender according to its sender-verification and deliverability rules; the application does not depend on the rewritten value.
+2. Open Brevo's SMTP settings and copy the exact SMTP login. Depending on the account, it may differ from the Brevo account email.
+3. Generate a Brevo SMTP key. Do not use a Brevo API key or account password.
+4. Configure `SMTP_HOST=smtp-relay.brevo.com`, `SMTP_PORT=587`, `SMTP_SECURE=false`, `SMTP_USER`, and server-only `SMTP_PASSWORD`.
+5. Set `PORTFOLIO_OWNER_EMAIL` and `PORTFOLIO_FROM_EMAIL` to `krishanthananayakkara@gmail.com`.
+
+The Nodemailer transport requires STARTTLS on port 587, requires TLS 1.2 or newer, rejects invalid certificates, and applies connection, greeting, and socket timeouts. SMTP failures write only sanitized error metadata to server logs; credentials, tokens, approval URLs, and message contents are not logged. A send is marked successful only after SMTP accepts its recipient.
+
+To avoid duplicate approval links, delivery is retried once only for failures that are known to occur before message submission: DNS resolution, connection, EHLO, or STARTTLS. Authentication, sender/recipient rejection, DATA, and ambiguous post-submission failures are never retried automatically.
+
+To verify SMTP from the local development environment and send one test message to the configured owner:
+
+```bash
+pnpm test:smtp
+```
+
+The command is CLI-only—there is no public test endpoint—and it refuses to run when `NODE_ENV=production`.
 
 Owner emails contain approval and rejection links. GET only renders a confirmation page; the owner passphrase and a same-origin POST are required to make a decision. Approved visitors receive a one-time link that expires after 48 hours.
 
@@ -49,7 +63,9 @@ The owner passphrase is checked only on the server using constant-time digest co
 
 ### 5. Vercel
 
-Add every `.env.example` variable to the Vercel project settings for Production and the desired Preview environments. Set `NEXT_PUBLIC_SITE_URL` independently for any preview environment used in email-flow testing, then redeploy.
+Add every `.env.example` variable to the Vercel project settings for Production and the desired Preview environments. Set production `NEXT_PUBLIC_SITE_URL` to `https://udaya-krishantha.vercel.app`, then redeploy. Do not copy `.env.local` into the deployment or expose `SMTP_PASSWORD` to browser code.
+
+The email route handlers use Next.js's default Node.js runtime and await Nodemailer's `sendMail()` before returning from the serverless request. With Cache Components enabled, Next.js does not support an explicit `runtime` export, so the routes intentionally rely on the documented Node.js default. Vercel permits outbound SMTP connections on port 587; port 25 is the blocked SMTP port.
 
 ## Private content
 
@@ -63,4 +79,4 @@ pnpm lint
 pnpm build
 ```
 
-For end-to-end testing, use a non-production Supabase project and Resend recipient. Verify valid/invalid submissions, duplicate suppression, approval and rejection confirmation, GET scanner safety, expired/used tokens, concurrent redemption, seven-day expiry, session revocation, unauthorised private API/assets, and provider failure behavior.
+For end-to-end testing, use a non-production Supabase project and a verified Brevo sender. Verify valid/invalid submissions, duplicate suppression, approval and rejection confirmation, GET scanner safety, expired/used tokens, concurrent redemption, seven-day expiry, session revocation, unauthorised private API/assets, and SMTP/database failure behavior.

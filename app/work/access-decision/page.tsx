@@ -14,7 +14,7 @@ function Notice({ state }: { state: string }) {
     rejected: { title: "Request rejected", body: "The request was rejected. No access link was created." },
     "already-processed": { title: "Already reviewed", body: "This authorisation link has already been used and no further action was taken." },
     invalid: { title: "Link unavailable", body: "This authorisation link is invalid or has expired. No action was taken." },
-    "delivery-failed": { title: "Approved, but email delivery failed", body: "The approval was recorded, but the visitor email could not be delivered. Check the Resend delivery log before taking further action." },
+    "delivery-failed": { title: "Approved, but email delivery failed", body: "The approval was recorded, but the visitor email could not be delivered. Check the server SMTP diagnostic before taking further action." },
   };
   const message = content[state] || content.invalid;
   return <div className="rounded-2xl border border-line bg-surface/70 p-7"><h1 className="text-3xl font-semibold tracking-[-0.04em] text-primary">{message.title}</h1><p className="mt-4 leading-7 text-secondary">{message.body}</p><Link href="/work" className="mt-7 inline-flex text-sm font-semibold text-accent-soft hover:text-primary">Return to portfolio</Link></div>;
