@@ -6,6 +6,9 @@ type ButtonProps = {
   href: string;
   variant?: "primary" | "secondary" | "text";
   className?: string;
+  download?: boolean | string;
+  target?: "_blank" | "_self";
+  rel?: string;
 };
 
 const styles = {
@@ -21,10 +24,16 @@ export function Button({
   href,
   variant = "primary",
   className = "",
+  download,
+  target,
+  rel,
 }: ButtonProps) {
   return (
     <Link
       href={href}
+      download={download}
+      target={target}
+      rel={rel}
       className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border px-5 text-sm font-semibold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none ${styles[variant]} ${className}`}
     >
       {children}

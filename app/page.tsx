@@ -130,7 +130,11 @@ export default function Home() {
                   View selected work
                   <ArrowIcon />
                 </Button>
-                <Button href="/cv" variant="secondary">
+                <Button
+                  href="/doc/Udaya_Krishantha_Nanayakkara.pdf"
+                  variant="secondary"
+                  download="Udaya_Krishantha_Nanayakkara.pdf"
+                >
                   Download CV
                   <DownloadIcon />
                 </Button>
@@ -302,8 +306,12 @@ export default function Home() {
               title="A decade of shipping for the web."
               description="Hands-on engineering experience across client services, product delivery and interface design."
             />
-            <Button href="/experience" variant="text" className="mt-7">
-              Full experience <ArrowIcon />
+            <Button
+              href="/doc/Udaya_Krishantha_Nanayakkara.pdf"
+              variant="text"
+              className="mt-7"
+            >
+              View full CV <ArrowIcon />
             </Button>
           </div>
 
@@ -346,8 +354,14 @@ export default function Home() {
                 Building production websites and applications for international clients,
                 from WordPress and PHP through to modern React, Next.js and headless architectures.
               </p>
-              <Button href="/about" variant="text" className="mt-8">
-                More about me <ArrowIcon />
+              <Button
+                href="https://www.linkedin.com/in/udaya-krishantha-nanayakkara/"
+                variant="text"
+                className="mt-8"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn profile <ArrowIcon />
               </Button>
             </article>
 
@@ -384,10 +398,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Button href="/contact">
+                <Button href="mailto:krishannanayakkara@gmail.com">
                   Contact me <ArrowIcon diagonal />
                 </Button>
-                <Button href="/cv" variant="secondary">View CV</Button>
+                <Button href="/doc/Udaya_Krishantha_Nanayakkara.pdf" variant="secondary">
+                  View CV
+                </Button>
               </div>
             </div>
           </div>

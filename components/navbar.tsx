@@ -9,7 +9,7 @@ const navigation = [
   { label: "Work", href: "/work" },
   { label: "Experience", href: "/#experience" },
   { label: "About", href: "/#about" },
-  { label: "CV", href: "/cv" },
+  { label: "CV", href: "/doc/Udaya_Krishantha_Nanayakkara.pdf" },
   { label: "Contact", href: "/#contact" },
 ];
 
