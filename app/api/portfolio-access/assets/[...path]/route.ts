@@ -1,11 +1,14 @@
 import { getPortfolioSession } from "@/lib/portfolio-access";
+import { portfolioPrivacyEnabled } from "@/lib/portfolio-privacy";
 import { fetchPrivateObject } from "@/lib/supabase";
 
 const responseHeaders = { "Cache-Control": "private, no-store, max-age=0", "X-Content-Type-Options": "nosniff", "X-Robots-Tag": "noindex, nofollow" };
 
 export async function GET(request: Request, context: { params: Promise<{ path: string[] }> }) {
-  const session = await getPortfolioSession();
-  if (!session) return new Response("Not found", { status: 404, headers: responseHeaders });
+  if (portfolioPrivacyEnabled) {
+    const session = await getPortfolioSession();
+    if (!session) return new Response("Not found", { status: 404, headers: responseHeaders });
+  }
   const { path } = await context.params;
   if (!path.length || path.some((segment) => !segment || segment === "." || segment === "..")) return new Response("Not found", { status: 404, headers: responseHeaders });
 

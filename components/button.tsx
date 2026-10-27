@@ -15,7 +15,7 @@ const styles = {
   primary:
     "border-accent bg-accent text-white shadow-[0_12px_32px_rgba(37,99,235,0.22)] hover:-translate-y-0.5 hover:border-accent-bright hover:bg-accent-bright",
   secondary:
-    "border-line-strong bg-white/[0.035] text-primary hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.065]",
+    "border-line-strong bg-surface-raised/70 text-primary hover:-translate-y-0.5 hover:border-line-strong hover:bg-surface-raised",
   text: "border-transparent bg-transparent px-0 text-primary hover:text-accent-soft",
 };
 

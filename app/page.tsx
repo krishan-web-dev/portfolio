@@ -62,6 +62,12 @@ const experience = [
     current: true,
   },
   {
+    company: "Independent · Upwork",
+    role: "Freelance Web Developer",
+    period: "2014 - Present",
+    current: true,
+  },
+  {
     company: "Champsoft Pvt Ltd",
     role: "Senior UI Designer & Full-Stack Developer",
     period: "2023 - 2024",
@@ -106,7 +112,7 @@ export default function Home() {
         <Container className="relative pt-20 pb-12 sm:pt-24 lg:pt-[clamp(1rem,2.5vh,2rem)] lg:pb-16">
           <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:gap-20">
             <div>
-              <div className="inline-flex items-center gap-2.5 rounded-lg border border-line bg-white/[0.03] px-3 py-2 text-[0.7rem] font-semibold tracking-[0.12em] text-secondary uppercase">
+              <div className="inline-flex items-center gap-2.5 rounded-lg border border-line bg-surface-raised/60 px-3 py-2 text-[0.7rem] font-semibold tracking-[0.12em] text-secondary uppercase">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-50 motion-reduce:animate-none" />
                   <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
@@ -276,10 +282,10 @@ export default function Home() {
               {expertise.map((group) => (
                 <article
                   key={group.title}
-                  className="group rounded-2xl border border-line bg-background/45 p-6 transition hover:border-white/20 hover:bg-background/75 sm:p-7 motion-reduce:transition-none"
+                  className="group rounded-2xl border border-line bg-background/45 p-6 transition hover:border-line-strong hover:bg-background/75 sm:p-7 motion-reduce:transition-none"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="grid size-10 place-items-center rounded-lg border border-line bg-white/[0.03] font-mono text-xs text-accent-soft">
+                    <span className="grid size-10 place-items-center rounded-lg border border-line bg-surface-raised/60 font-mono text-xs text-accent-soft">
                       {group.number}
                     </span>
                     <span className="mt-2 h-px w-8 bg-line transition-all group-hover:w-12 group-hover:bg-accent motion-reduce:transition-none" />
@@ -304,7 +310,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Experience"
               title="A decade of shipping for the web."
-              description="Hands-on engineering experience across client services, product delivery and interface design."
+              description="Building websites and web applications for agencies, businesses and independent clients since 2014."
             />
             <Button
               href="/doc/Udaya_Krishantha_Nanayakkara.pdf"
@@ -319,16 +325,16 @@ export default function Home() {
             {experience.map((item, index) => (
               <li
                 key={`${item.company}-${item.period}`}
-                className="group grid gap-5 rounded-2xl border border-line bg-surface/55 p-6 transition hover:border-white/20 hover:bg-surface sm:grid-cols-[3rem_1fr_auto] sm:items-start sm:p-7 motion-reduce:transition-none"
+                className="group grid gap-5 rounded-2xl border border-line bg-surface/55 p-6 transition hover:border-line-strong hover:bg-surface sm:grid-cols-[3rem_1fr_auto] sm:items-start sm:p-7 motion-reduce:transition-none"
               >
-                <span className="grid size-10 place-items-center rounded-lg border border-line bg-white/[0.03] font-mono text-xs text-muted">
+                <span className="grid size-10 place-items-center rounded-lg border border-line bg-surface-raised/60 font-mono text-xs text-muted">
                   0{index + 1}
                 </span>
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
                     <h3 className="text-xl font-semibold tracking-[-0.025em] text-primary">{item.company}</h3>
                     {item.current ? (
-                      <span className="rounded-md border border-emerald-400/20 bg-emerald-400/[0.07] px-2 py-1 text-[0.62rem] font-semibold tracking-[0.08em] text-emerald-300 uppercase">
+                      <span className="rounded-md border border-status-current-border bg-status-current-bg px-2 py-1 text-[0.62rem] font-semibold tracking-[0.08em] text-status-current uppercase">
                         Current
                       </span>
                     ) : null}

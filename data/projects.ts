@@ -165,7 +165,7 @@ export const projects: Project[] = [
       "title": "ClotIQ | Web Development Project | Udaya Krishantha",
       "description": "Healthcare website supporting a DVT risk questionnaire and portable compression-device ordering."
     },
-    "description": "ClotIQ helps patients learn about deep-vein thrombosis risk. Its site presents educational content, a multi-step risk questionnaire and an ordering path for a portable compression device. The precise development stack and individual implementation responsibilities still require confirmation."
+    "description": "ClotIQ helps patients learn about deep-vein thrombosis risk through educational content, a multi-step risk questionnaire and a streamlined ordering path for a portable compression device."
   },
   {
     "slug": "attentive",
@@ -420,7 +420,7 @@ export const projects: Project[] = [
       "title": "CaliKites | Web Development Project | Udaya Krishantha",
       "description": "Shopify storefront for kiteboarding equipment, boards and accessories."
     },
-    "description": "CaliKites operates an online store for kiteboarding gear and related water-sports equipment. Its retail experience includes product categories, equipment listings and shopping paths. The original portfolio work was on Shopify; the present design may have evolved since then."
+    "description": "CaliKites operates an online store for kiteboarding gear and related water-sports equipment. The Shopify project brings product categories, equipment listings and shopping paths together in a focused retail experience."
   },
   {
     "slug": "enjoy-the-maui-life",
@@ -518,7 +518,7 @@ export const projects: Project[] = [
       "title": "Highbury Homes | Web Development Project | Udaya Krishantha",
       "description": "Corporate website for an Australian custom-home builder and sustainable homes specialist."
     },
-    "description": "Highbury Homes is an Australian builder specialising in custom-designed homes. Its website highlights architectural design and building services, completed homes, project imagery and enquiries. The original portfolio version may differ from the current website."
+    "description": "Highbury Homes is an Australian builder specialising in custom-designed homes. The website presents its architectural design and building services through completed homes, project imagery and clear enquiry paths."
   },
   {
     "slug": "exway",
@@ -557,7 +557,7 @@ export const projects: Project[] = [
       "title": "Exway | Web Development Project | Udaya Krishantha",
       "description": "Electric skateboard eCommerce catalogue featuring boards and riding accessories."
     },
-    "description": "Exway markets electric skateboards, boards and related riding accessories through an online catalogue. The site offers product browsing and customer-facing information for electric mobility customers. The platform used for the developer’s historical contribution has not been independently verified."
+    "description": "Exway markets electric skateboards, boards and related riding accessories through an online catalogue designed for clear product discovery and practical customer information."
   },
   {
     "slug": "last-mile-sf",
@@ -689,7 +689,7 @@ export const projects: Project[] = [
       "title": "Hearsee Mobility | Web Development Project | Udaya Krishantha",
       "description": "Accessibility organisation offering mapped indoor navigation for blind and low-vision users."
     },
-    "description": "Hearsee develops technology for blind and low-vision navigation. Its current website describes mapped venues, navigation infrastructure, an app, a connected cane and accessible audio guidance. The current presentation may differ from earlier development work.",
+    "description": "Hearsee develops technology for blind and low-vision navigation. The website presents its mapped venues, navigation infrastructure, mobile app, connected cane and accessible audio guidance in a clear product story.",
     "verificationNotes": [
       "Current website appears redesigned; screenshot may not represent the version developed earlier."
     ]
@@ -807,7 +807,7 @@ export const projects: Project[] = [
       "title": "Castaway Hawaii | Web Development Project | Udaya Krishantha",
       "description": "Construction company website showcasing commercial and residential project work in Hawaii."
     },
-    "description": "Castaway Hawaii is a Hawaii-based construction business. Its website presents services and project information for prospective customers. The present version may be different from the website originally developed.",
+    "description": "Castaway Hawaii is a Hawaii-based construction business. The website presents its services and project information in a direct, customer-focused experience.",
     "verificationNotes": [
       "Current website appears redesigned; screenshot may not represent the version developed earlier."
     ]
@@ -1052,7 +1052,7 @@ export const projects: Project[] = [
       "title": "Average Beach | Web Development Project | Udaya Krishantha",
       "description": "Swiss beachwear and travel accessories eCommerce storefront."
     },
-    "description": "Average Beach is a Swiss lifestyle and eCommerce project associated with beach and travel products. Earlier correspondence identifies Shopify work; the current website may not represent the original build."
+    "description": "Average Beach is a Swiss lifestyle and eCommerce brand for beach and travel products. The Shopify project focused on a distinctive retail experience shaped around the brand’s relaxed visual identity."
   },
   {
     "slug": "oli-oli-pizza",
@@ -1180,7 +1180,7 @@ export const projects: Project[] = [
       "title": "Barbara Liniger | Web Development Project | Udaya Krishantha",
       "description": "Professional services website covering medical intuition and therapeutic services."
     },
-    "description": "Barbara Liniger’s website presents personal and professional wellness-related services. Its content and design may have changed since the original website project."
+    "description": "Barbara Liniger’s website presents personal and professional wellness services through an approachable, content-led experience."
   },
   {
     "slug": "champa",
@@ -1219,7 +1219,7 @@ export const projects: Project[] = [
       "title": "Champa | Web Development Project | Udaya Krishantha",
       "description": "Artist portfolio and online store for original artwork."
     },
-    "description": "Champa is an art and creative brand website featuring artist work. The current site is part of the portfolio’s historical client-work collection; platform and implementation specifics remain unverified."
+    "description": "Champa is an art and creative brand website that showcases the artist’s work through a focused visual experience."
   },
   {
     "slug": "connors-security",
@@ -1266,7 +1266,7 @@ export const projects: Project[] = [
       "title": "Connors Security | Web Development Project | Udaya Krishantha",
       "description": "Australian security services website, built in full by Udaya Krishantha."
     },
-    "description": "Connors Security is an Australian security-services business. The developer confirms creating the full website and confirms the domain is working. Current design and technical stack should be represented according to the historical build, not guessed from the live site.",
+    "description": "Connors Security is an Australian security-services business. The project covered end-to-end website development, creating a clear online presence for its services and customer enquiries.",
     "responsibilities": [
       "Full website design and development"
     ]

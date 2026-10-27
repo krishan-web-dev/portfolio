@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { Container } from "@/components/container";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
   { label: "Home", href: "/" },
@@ -61,7 +62,7 @@ export function Navbar() {
             className="group flex min-w-0 items-center gap-3 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
             onClick={() => setIsOpen(false)}
           >
-            <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-line-strong bg-white/[0.035] text-xs font-bold text-primary transition group-hover:border-accent/60 group-hover:bg-accent/10 motion-reduce:transition-none">
+            <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-line-strong bg-surface-raised/70 text-xs font-bold text-primary transition group-hover:border-accent/60 group-hover:bg-accent/10 motion-reduce:transition-none">
               UK.
             </span>
             <span className="min-w-0">
@@ -74,38 +75,42 @@ export function Navbar() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
-            {navigation.map((item) => (
+          <div className="ml-auto flex items-center gap-2">
+            <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+              {navigation.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="relative px-3 py-2 text-sm font-medium text-secondary transition after:absolute after:inset-x-3 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-primary hover:after:scale-x-100 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link
-                key={item.label}
-                href={item.href}
-                className="relative px-3 py-2 text-sm font-medium text-secondary transition after:absolute after:inset-x-3 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-primary hover:after:scale-x-100 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none"
+                href="/#contact"
+                className="ml-2 rounded-lg border border-accent/50 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent-soft transition hover:border-accent hover:bg-accent hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none"
               >
-                {item.label}
+                Let&apos;s talk
               </Link>
-            ))}
-            <Link
-              href="/#contact"
-              className="ml-2 rounded-lg border border-accent/50 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent-soft transition hover:border-accent hover:bg-accent hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none"
-            >
-              Let&apos;s talk
-            </Link>
-          </nav>
+            </nav>
 
-          <button
-            type="button"
-            className="grid size-10 place-items-center rounded-lg border border-line-strong bg-white/[0.035] text-primary transition duration-300 ease-out hover:border-accent/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:hidden motion-reduce:transition-none"
-            aria-expanded={isOpen}
-            aria-controls={menuId}
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            onClick={() => setIsOpen((current) => !current)}
-          >
-            <span className="relative block h-4 w-5" aria-hidden="true">
-              <span className={`absolute left-0 top-0.5 h-px w-5 bg-current transition duration-300 ease-out ${isOpen ? "translate-y-[6px] rotate-45" : ""}`} />
-              <span className={`absolute left-0 top-[7px] h-px w-5 bg-current transition duration-300 ease-out ${isOpen ? "opacity-0" : ""}`} />
-              <span className={`absolute bottom-0.5 left-0 h-px w-5 bg-current transition duration-300 ease-out ${isOpen ? "-translate-y-[6px] -rotate-45" : ""}`} />
-            </span>
-          </button>
+            <ThemeToggle />
+
+            <button
+              type="button"
+              className="grid size-10 place-items-center rounded-lg border border-line-strong bg-surface-raised/70 text-primary transition duration-300 ease-out hover:border-accent/50 hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:hidden motion-reduce:transition-none"
+              aria-expanded={isOpen}
+              aria-controls={menuId}
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              onClick={() => setIsOpen((current) => !current)}
+            >
+              <span className="relative block h-4 w-5" aria-hidden="true">
+                <span className={`absolute left-0 top-0.5 h-px w-5 bg-current transition duration-300 ease-out ${isOpen ? "translate-y-[6px] rotate-45" : ""}`} />
+                <span className={`absolute left-0 top-[7px] h-px w-5 bg-current transition duration-300 ease-out ${isOpen ? "opacity-0" : ""}`} />
+                <span className={`absolute bottom-0.5 left-0 h-px w-5 bg-current transition duration-300 ease-out ${isOpen ? "-translate-y-[6px] -rotate-45" : ""}`} />
+              </span>
+            </button>
+          </div>
         </Container>
       </header>
 

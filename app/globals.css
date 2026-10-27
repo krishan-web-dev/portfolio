@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+:root[data-theme="dark"] {
   --background: #07111f;
   --surface: #0f1724;
   --surface-raised: #151e2e;
@@ -11,8 +12,37 @@
   --accent: #2563eb;
   --accent-bright: #3b82f6;
   --accent-soft: #60a5fa;
+  --status-current: #6ee7b7;
+  --status-current-border: rgba(52, 211, 153, 0.24);
+  --status-current-bg: rgba(52, 211, 153, 0.08);
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.14);
+  --grid-line: rgba(255, 255, 255, 0.018);
+  --panel-sheen: rgba(255, 255, 255, 0.02);
+  --ambient-glow: rgba(37, 99, 235, 0.1);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --background: #eef1f5;
+  --surface: #fbfcfd;
+  --surface-raised: #dfe5ec;
+  --surface-muted: #e7ebf0;
+  --primary: #0f172a;
+  --secondary: #334155;
+  --muted: #475569;
+  --accent: #1d4ed8;
+  --accent-bright: #1e40af;
+  --accent-soft: #1d4ed8;
+  --status-current: #047857;
+  --status-current-border: rgba(4, 120, 87, 0.3);
+  --status-current-bg: rgba(16, 185, 129, 0.12);
+  --line: rgba(15, 23, 42, 0.13);
+  --line-strong: rgba(15, 23, 42, 0.22);
+  --grid-line: rgba(15, 23, 42, 0.055);
+  --panel-sheen: rgba(15, 23, 42, 0.025);
+  --ambient-glow: rgba(37, 99, 235, 0.07);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -26,6 +56,9 @@
   --color-accent: var(--accent);
   --color-accent-bright: var(--accent-bright);
   --color-accent-soft: var(--accent-soft);
+  --color-status-current: var(--status-current);
+  --color-status-current-border: var(--status-current-border);
+  --color-status-current-bg: var(--status-current-bg);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --font-sans: var(--font-geist-sans);
@@ -45,11 +78,12 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 78% -8%, rgba(37, 99, 235, 0.1), transparent 32rem),
+    radial-gradient(circle at 78% -8%, var(--ambient-glow), transparent 32rem),
     var(--background);
   color: var(--primary);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: clip;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 ::selection {
@@ -59,8 +93,8 @@ body {
 
 .hero-grid {
   background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
     radial-gradient(circle at 82% 34%, rgba(37, 99, 235, 0.12), transparent 26rem);
   background-size: 72px 72px, 72px 72px, auto;
   mask-image: linear-gradient(to bottom, black, transparent 92%);
@@ -72,11 +106,27 @@ body {
   content: "";
   background:
     radial-gradient(circle at 88% 10%, rgba(37, 99, 235, 0.2), transparent 24rem),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.02), transparent 42%);
+    linear-gradient(120deg, var(--panel-sheen), transparent 42%);
+}
+
+.theme-toggle__moon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle__sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle__moon {
+  display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  body {
+    transition: none;
   }
 }

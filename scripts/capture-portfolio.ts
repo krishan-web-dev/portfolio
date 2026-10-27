@@ -52,6 +52,11 @@ const captures: Capture[] = [
   },
 ];
 
+const coverOnly = process.argv.includes("--cover-only");
+const requestedCaptures = coverOnly
+  ? captures.filter((capture) => capture.filename === "cover.webp")
+  : captures;
+
 const outputRoot = path.resolve(process.cwd(), "public", "projects");
 const fallbackImagePath = path.resolve(
   process.cwd(),
@@ -306,7 +311,7 @@ async function captureProject(browser: Browser, project: CaptureProject) {
   console.log(`\nCapturing ${project.name}...`);
   await assertDomainAvailable(project.url);
 
-  for (const capture of captures) {
+  for (const capture of requestedCaptures) {
     const context = await browser.newContext({
       viewport: { width: capture.width, height: capture.height },
       deviceScaleFactor: 1,
@@ -355,7 +360,7 @@ async function createFallbackImages(project: CaptureProject) {
 
   console.warn("  ! using local fallback image");
 
-  for (const capture of captures) {
+  for (const capture of requestedCaptures) {
     const outputPath = path.join(outputDirectory, capture.filename);
 
     await sharp(fallbackImagePath)
@@ -403,7 +408,7 @@ function formatBytes(bytes: number) {
 async function main() {
   await mkdir(outputRoot, { recursive: true });
 
-  const requestedSlugs = process.argv.slice(2);
+  const requestedSlugs = process.argv.slice(2).filter((argument) => argument !== "--cover-only");
   const selectedProjects =
     requestedSlugs.length === 0
       ? projects

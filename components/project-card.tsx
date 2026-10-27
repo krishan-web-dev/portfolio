@@ -36,10 +36,10 @@ export function ProjectCard({ project, variant = project.projectTier }: ProjectC
       <Link
         href={href}
         aria-label={`View ${project.name} project`}
-        className="group flex min-h-52 flex-col rounded-2xl border border-line bg-surface/55 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-surface focus-visible:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none"
+        className="group flex min-h-52 flex-col rounded-2xl border border-line bg-surface/55 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:bg-surface focus-visible:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none"
       >
         <div className="flex items-start justify-between gap-4">
-          <span className="rounded-md border border-line bg-white/[0.025] px-2 py-1 text-[0.62rem] font-semibold tracking-[0.12em] text-muted uppercase">
+          <span className="rounded-md border border-line bg-surface-raised/50 px-2 py-1 text-[0.62rem] font-semibold tracking-[0.12em] text-muted uppercase">
             Historical project
           </span>
           <span className="grid size-8 shrink-0 place-items-center rounded-lg border border-line text-muted transition group-hover:border-accent/40 group-hover:text-accent-soft motion-reduce:transition-none">
@@ -74,7 +74,7 @@ export function ProjectCard({ project, variant = project.projectTier }: ProjectC
     <Link
       href={href}
       aria-label={`View ${project.name} project`}
-      className="project-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/75 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-surface hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] focus-visible:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none"
+      className="project-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/75 transition duration-300 hover:-translate-y-1 hover:border-line-strong hover:bg-surface hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] focus-visible:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none"
     >
       <div className="overflow-hidden border-b border-line bg-surface-muted">
         <div className="transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none">
@@ -99,7 +99,7 @@ export function ProjectCard({ project, variant = project.projectTier }: ProjectC
           >
             {project.name}
           </h3>
-          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-line bg-white/[0.03] text-secondary transition group-hover:border-accent/40 group-hover:bg-accent group-hover:text-white motion-reduce:transition-none">
+          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-line bg-surface-raised/60 text-secondary transition group-hover:border-accent/40 group-hover:bg-accent group-hover:text-white motion-reduce:transition-none">
             <ArrowIcon />
           </span>
         </div>

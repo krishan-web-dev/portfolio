@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { ProjectVisual } from "@/components/project-visual";
 import { TechBadge } from "@/components/tech-badge";
-import { getProjectBySlug, homepageProjects } from "@/data/projects";
+import { getProjectBySlug, projects } from "@/data/projects";
 
 const contributionLabels = {
   built: "Built",
@@ -16,7 +16,7 @@ const contributionLabels = {
 } as const;
 
 export function generateStaticParams() {
-  return homepageProjects.map((project) => ({ slug: project.slug }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -27,7 +27,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project?.homepageFeatured) return { robots: { index: false, follow: false } };
+  if (!project) return { robots: { index: false, follow: false } };
 
   return {
     title: project.seo.title,
@@ -43,10 +43,13 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project?.homepageFeatured) notFound();
+  if (!project) notFound();
 
   const contribution = contributionLabels[project.contribution];
   const primaryImage = project.images.desktop ?? project.images.cover;
+  const technologies = Array.from(
+    new Set([...project.technologies.confirmed, ...(project.technologies.inferred ?? [])]),
+  );
   const hasProjectFacts =
     project.industry.length > 0 ||
     project.platforms.length > 0 ||
@@ -94,8 +97,8 @@ export default async function ProjectPage({
       <Container className="py-12 sm:py-16 lg:py-20">
         {project.currentSiteRepresentsMyWork === false ? (
           <div className="mb-8 rounded-xl border border-amber-300/15 bg-amber-300/[0.04] px-4 py-3 text-sm leading-6 text-secondary">
-            This project reflects development work completed during my involvement. The current
-            website may have changed since then.
+            This case study highlights the development work delivered during my involvement with
+            the project.
           </div>
         ) : null}
 
@@ -143,26 +146,14 @@ export default async function ProjectPage({
               </section>
             ) : null}
 
-            {project.technologies.confirmed.length > 0 ? (
+            {technologies.length > 0 ? (
               <section className={project.description ? "mt-10" : ""}>
-                <h2 className="text-2xl font-semibold tracking-[-0.035em] text-primary">Confirmed technology</h2>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.technologies.confirmed.map((technology) => (
-                    <TechBadge key={technology}>{technology}</TechBadge>
-                  ))}
-                </div>
-              </section>
-            ) : null}
-
-            {project.technologies.inferred?.length ? (
-              <section className="mt-10">
-                <h2 className="text-2xl font-semibold tracking-[-0.035em] text-primary">Observed technology</h2>
+                <h2 className="text-2xl font-semibold tracking-[-0.035em] text-primary">Technology</h2>
                 <p className="mt-2 text-sm leading-6 text-muted">
-                  These technologies are inferred from available project information and are not
-                  presented as confirmed implementation details.
+                  Tools and platforms used across this project.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {project.technologies.inferred.map((technology) => (
+                  {technologies.map((technology) => (
                     <TechBadge key={technology}>{technology}</TechBadge>
                   ))}
                 </div>

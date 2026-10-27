@@ -28,7 +28,7 @@ export function Footer() {
     <footer className="border-t border-line py-8">
       <Container className="flex flex-col gap-6 text-sm sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <span className="grid size-9 place-items-center rounded-lg border border-line bg-white/[0.03] text-xs font-bold text-primary">
+          <span className="grid size-9 place-items-center rounded-lg border border-line bg-surface-raised/60 text-xs font-bold text-primary">
             UK.
           </span>
           <div>
